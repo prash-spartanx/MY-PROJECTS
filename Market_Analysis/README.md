@@ -24,5 +24,3 @@ This project scrapes real-time market data using Selenium, processes it, and app
 1. Run `Datasetgenerator.py` to scrape and save data.
 2. Run `model.py` to analyze the data and view results.
 
----
-Feel free to update this README with more details or instructions as your project evolves.
