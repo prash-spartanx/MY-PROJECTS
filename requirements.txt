@@ -1,0 +1,1 @@
+ langchain langchain_google_genai langchain-community chromadb fpdf Pillow gTTS requests selenium webdriver-manager wikipedia arxiv duckduckgo-search
