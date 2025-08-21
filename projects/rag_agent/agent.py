@@ -44,7 +44,7 @@ def select_tool_and_retrieve(llm, prompt: str) -> list[str]:
     arxiv = ArxivQueryRun(api_wrapper=ArxivAPIWrapper())
     web_search = DuckDuckGoSearchRun()
 
-    # Check if sample.pdf exists before creating the tool
+    
     pdf_tool_description = "This tool is currently disabled because sample.pdf was not found."
     if os.path.exists("sample.pdf"):
         pdf_tool_description = "Use this to read a known PDF document named sample.pdf."
@@ -85,7 +85,7 @@ def embed_and_search(chunks: list[str], query: str) -> list[Document]:
 def generate_summary_and_keywords(llm, query: str, top_chunks: list[Document]) -> dict:
     print("\nStep 4: Generating summary and keywords...")
     context = "\n\n---\n\n".join([doc.page_content for doc in top_chunks])
-    template = "..." # The prompt template is the same, keeping it short here for brevity
+    template = "..." 
     template = """
     Based on the context below, answer the user's original query.
     Original Query: {query}
@@ -121,12 +121,12 @@ def get_images_colab(keywords: str, download_path="images", limit=2) -> list[str
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
-    # Use webdriver_manager to handle the Chrome driver in Colab
+    
     try:
         driver = webdriver.Chrome(options=options)
         search_query = f"https://www.google.com/search?q={keywords.replace(' ', '+')}&tbm=isch"
         driver.get(search_query)
-        time.sleep(3) # Give more time for Colab's network
+        time.sleep(3) 
         images = driver.find_elements(By.CSS_SELECTOR, "img.rg_i")[:limit]
         saved_files = []
         for i, img in enumerate(images):
