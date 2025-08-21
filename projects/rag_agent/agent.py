@@ -45,7 +45,7 @@ def select_tool_and_retrieve(llm, prompt: str) -> list[str]:
     web_search = DuckDuckGoSearchRun()
 
     
-    pdf_tool_description = "This tool is currently disabled because sample.pdf was not found."
+    pdf_tool_description = "This tool to be used when the query is to retreive info regarding users resume"
     if os.path.exists("sample.pdf"):
         pdf_tool_description = "Use this to read a known PDF document named sample.pdf."
 
@@ -85,7 +85,6 @@ def embed_and_search(chunks: list[str], query: str) -> list[Document]:
 def generate_summary_and_keywords(llm, query: str, top_chunks: list[Document]) -> dict:
     print("\nStep 4: Generating summary and keywords...")
     context = "\n\n---\n\n".join([doc.page_content for doc in top_chunks])
-    template = "..." 
     template = """
     Based on the context below, answer the user's original query.
     Original Query: {query}
@@ -165,10 +164,7 @@ def create_pdf(summary_text: str, images: list[str], output_filename="output.pdf
     return output_filename
 
 def text_to_speech_colab(text: str) -> str:
-    """
-    COLAB-FIX: Generates speech and saves it to a file.
-    It returns the filename so the user can download it. `playsound` is removed.
-    """
+    
     print("\nStep 7: Generating audio speech file...")
     try:
         tts = gTTS(text=text, lang="en")
